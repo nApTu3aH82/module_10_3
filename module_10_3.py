@@ -27,8 +27,10 @@ class Bank():
             print(f'Снятие: {summ}. Баланс: {self.balance}')
         else:
             print('Запрос отклонен, недостаточно средств')
-            if not lock.locked():
+            try:
                 lock.acquire()
+            finally:
+                lock.release()
         sleep(0.001)
 
 
